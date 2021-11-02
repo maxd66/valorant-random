@@ -1,0 +1,29 @@
+{
+  "name": "valorant-random",
+  "version": "1.0.0",
+  "description": "A randomizer for all the valorant options you can't choose from",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "server": "cd server && npm run watch",
+    "client": "cd client && npm run serve",
+    "develop": "concurrently -c magenta,cyan \"npm:server\" \"npm:client\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxd66/valorant-random.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxd66/valorant-random/issues"
+  },
+  "homepage": "https://github.com/maxd66/valorant-random#readme",
+  "devDependencies": {
+    "concurrently": "^6.3.0"
+  }
+}
