@@ -3,9 +3,18 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const HistorySchema = new Schema({
-  agentsGenerated: Number,
-  weaponsGenerated: Number,
-  strategiesGenerated: Number,
+  agentsGenerated: {
+    type: String,
+    default: 0,
+  },
+  weaponsGenerated: {
+    type: String,
+    default: 0,
+  },
+  strategiesGenerated: {
+    type: String,
+    default: 0,
+  },
   lastTenAgents: {
     type: [String],
     validate: [

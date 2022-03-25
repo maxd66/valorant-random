@@ -16,6 +16,22 @@ const UserSchema = new Schema({
     min: [8, "password too short"],
     max: [64, "password too long"],
   },
+  email: {
+    type: String,
+    trim: true,
+  },
+  userHistory: {
+    type: Schema.type.ObjectId,
+    ref: "History",
+  },
+  riotUsername: {
+    type: String,
+    trim: true,
+  },
+  dateCreated: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const User = mongoose.model("User", UserSchema);
