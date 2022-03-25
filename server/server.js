@@ -16,7 +16,6 @@ app.use(routes);
 
 mongoose.connect("mongodb://localhost/valorant_random_db", {
   useNewUrlParser: true,
-  useFindAndModify: false,
   useUnifiedTopology: true,
 });
 

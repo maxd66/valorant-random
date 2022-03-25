@@ -5,8 +5,8 @@ const { Schema } = mongoose;
 const StrategySchema = new Schema({
   side: {
     type: String,
-    enum: ["attack", "defend", "both"],
-    default: "both",
+    enum: ["attack", "defend"],
+    default: "attack",
   },
   class: {
     type: String,
