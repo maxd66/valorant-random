@@ -1,36 +1,25 @@
-require("dotenv").config();
 const express = require("express");
-const path = require("path");
-const sequelize = require("./config/connection");
-const router = require("./controllers");
+const mongoose = require("mongoose");
+const cors = require("cors");
 
-const PORT = process.env.PORT || 8081;
+const routes = require("./routes");
+
+const PORT = process.env.PORT || 3001;
+
 const app = express();
 
-// set up middleware
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// abstracted API routes
-app.use(router);
+app.use(routes);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+mongoose.connect("mongodb://localhost/valorant_random_db", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
 });
 
-sequelize
-  .sync({ force: false })
-  .then(() => {
-    app.listen(PORT, (err) => {
-      if (err) {
-        console.error(err);
-        return process.exit(1);
-      }
-      console.log(`App listening on PORT ${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}!`);
+});
