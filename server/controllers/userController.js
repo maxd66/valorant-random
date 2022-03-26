@@ -54,6 +54,8 @@ const userController = {
       res.status(401).json({ msg: "login information incorrect" });
     }
   },
+  updateUser(req, res) {},
+  deleteUser(req, res) {},
 };
 
 module.exports = userController;
