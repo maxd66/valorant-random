@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const { Schema } = mongoose;
 
@@ -21,7 +22,7 @@ const UserSchema = new Schema({
     trim: true,
   },
   userHistory: {
-    type: Schema.type.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "History",
   },
   riotUsername: {
@@ -33,6 +34,19 @@ const UserSchema = new Schema({
     default: Date.now(),
   },
 });
+
+UserSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("password")) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
+});
+
+UserSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
 
 const User = mongoose.model("User", UserSchema);
 

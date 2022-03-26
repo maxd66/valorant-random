@@ -1,7 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const db = require("./config/connection");
 const cors = require("cors");
 
+const { authMiddleware } = require("./utils/auth");
 const routes = require("./routes");
 
 const PORT = process.env.PORT || 3001;
@@ -14,11 +15,8 @@ app.use(express.json());
 
 app.use(routes);
 
-mongoose.connect("mongodb://localhost/valorant_random_db", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+db.once("open", () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+  });
 });
