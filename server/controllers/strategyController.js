@@ -45,13 +45,29 @@ const strategyController = {
       });
   },
   getOneStrategy(req, res) {
-    Strategy.findById(req.body.strategyId)
+    Strategy.findById(req.params.strategyId)
       .then((strategy) => {
         if (!strategy) {
           res.status(404).json({ msg: "no strategy with that id found" });
           return;
         }
         res.json(strategy);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json(err);
+      });
+  },
+  addWinOrLoss(req, res) {
+    let wolObj = {};
+    if (req.params.wol === "wins") {
+      wolObj.wins = 1;
+    } else {
+      wolObj.losses = 1;
+    }
+    Strategy.findByIdAndUpdate(req.params.strategyId, { $inc: wolObj })
+      .then((dbResponse) => {
+        res.json({ msg: `Success! ${req.params.wol} increased by 1` });
       })
       .catch((err) => {
         console.log(err);
