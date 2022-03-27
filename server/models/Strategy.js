@@ -5,22 +5,22 @@ const { Schema } = mongoose;
 const StrategySchema = new Schema({
   side: {
     type: String,
-    enum: ["attack", "defend"],
-    default: "attack",
+    enum: ["attack", "defend", "na"],
+    default: "na",
   },
   class: {
     type: String,
     enum: ["funny", "tactical"],
     default: "funny",
   },
-  requiredPlayers: {
+  recommendedMinimumPlayers: {
     type: Number,
     default: 1,
   },
   title: String,
   description: String,
-  wins: Number,
-  losses: Number,
+  wins: { type: Number, default: 0 },
+  losses: { type: Number, default: 0 },
   dateCreated: {
     type: Date,
     default: Date.now(),

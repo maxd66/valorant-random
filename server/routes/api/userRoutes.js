@@ -6,6 +6,7 @@ const {
   login,
   updateUser,
   deleteUser,
+  updateHistory,
 } = require("../../controllers/userController");
 const { authMiddleware } = require("../../utils/auth");
 
@@ -19,6 +20,6 @@ router
 
 router.post("/login", login);
 
-router.put("/history/:userId/:operation/:field", () => {});
+router.put("/history/:userId/:field", authMiddleware, updateHistory);
 
 module.exports = router;

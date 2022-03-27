@@ -4,19 +4,19 @@ const { Schema } = mongoose;
 
 const HistorySchema = new Schema({
   agentsGenerated: {
-    type: String,
+    type: Number,
     default: 0,
   },
   weaponsGenerated: {
-    type: String,
+    type: Number,
     default: 0,
   },
   strategiesGenerated: {
-    type: String,
+    type: Number,
     default: 0,
   },
   lastTenAgents: {
-    type: [String],
+    type: [Number],
     validate: [
       arrayLimit,
       "array will exceed 10, just fyi this should never happen if front end logic is working properly.",
