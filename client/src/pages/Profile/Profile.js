@@ -7,9 +7,19 @@ async function Profile() {
   async function generateAgentList(userInfo) {
     let agentListHtml = ``;
     const agentArr = userInfo.userHistory.lastTenAgents;
+    const apiResponse = await apiCalls.getAllAgents();
     for (let i = 0; i < agentArr.length; i++) {
       //make call to valorant api, generate agent based on user history
-      const agentHtml = ``;
+      const allAgents = apiResponse.data;
+      const thisAgent = allAgents.filter((agent) => {
+        return agent.uuid === agentArr[i];
+      });
+      const agentHtml = `      <div className="agentThumbnailContainer">
+      <img
+        alt="portrait of ${thisAgent[0].displayName}"
+        src="${thisAgent[0].bustPortrait}"
+      />
+    </div>`;
       agentListHtml += agentHtml;
     }
     return agentListHtml;

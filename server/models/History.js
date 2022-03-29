@@ -16,7 +16,7 @@ const HistorySchema = new Schema({
     default: 0,
   },
   lastTenAgents: {
-    type: [Number],
+    type: [String],
     validate: [
       arrayLimit,
       "array will exceed 10, just fyi this should never happen if front end logic is working properly.",

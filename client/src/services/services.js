@@ -34,6 +34,21 @@ class ApiCalls {
     }
   }
 
+  async login(data) {
+    try {
+      const url = `${dbLink}/api/user/login`;
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      Auth.login(response.token);
+      return await response.json();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async getAllAgents() {
     try {
       const localInfo = localStorage.getItem("allAgents");
