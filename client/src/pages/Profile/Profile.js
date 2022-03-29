@@ -1,9 +1,9 @@
 import Auth from "../../services/auth";
-import apiCall from "../../services/services";
+import apiCalls from "../../services/services";
 
 async function Profile() {
   const userId = Auth.getProfile._id;
-  const userData = await apiCall.getSingleUser(userId);
+  const userData = await apiCalls.getSingleUser(userId);
   async function generateAgentList(userInfo) {
     let agentListHtml = ``;
     const agentArr = userInfo.userHistory.lastTenAgents;
