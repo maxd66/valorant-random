@@ -53,11 +53,14 @@ function SignIn() {
         </label>
         <input
           id="showPassword-checkbox"
+          name="showPassword-checkbox"
           type="checkbox"
           onChange={handleCheckClick}
           checked={checked}
-          value="Show Password"
         />
+        <label id="checkBox-label" htmlFor="showPassword-checkbox">
+          Show Password
+        </label>
       </form>
       <a id="signUp-link" href="/signup">
         Create an account
