@@ -2,7 +2,7 @@ import decode from "jwt-decode";
 
 class AuthService {
   getProfile() {
-    return decode(this.getToken());
+    return decode(this.getToken()).data;
   }
 
   loggedIn() {
@@ -28,7 +28,9 @@ class AuthService {
   }
 
   login(idToken) {
-    localStorage.setItem("id_token", idToken);
+    if (idToken !== undefined) {
+      localStorage.setItem("id_token", idToken);
+    }
   }
 
   logout() {

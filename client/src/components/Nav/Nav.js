@@ -10,14 +10,8 @@ function Nav() {
   };
   const loggedIn = Auth.loggedIn();
 
-  const generateCreateAccountLink = () => {
-    if (!loggedIn) {
-      return (
-        <a id="signUpNavLink" className="menu-item" href="/signUp">
-          Create an account
-        </a>
-      );
-    }
+  const signOut = () => {
+    Auth.logout();
   };
   return (
     <Menu
@@ -38,7 +32,15 @@ function Nav() {
           Sign in
         </a>
       )}
-      {generateCreateAccountLink()}
+      {loggedIn ? (
+        <a id="signOutNavLink" className="menu-item" href="/" onClick={signOut}>
+          Sign out
+        </a>
+      ) : (
+        <a id="signUpNavLink" className="menu-item" href="/signUp">
+          Create an account
+        </a>
+      )}
     </Menu>
   );
 }

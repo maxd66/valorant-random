@@ -12,26 +12,41 @@ function SignUp() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
+    event.target.classList.remove("warning");
     setFormState({
       ...formState,
       [name]: value,
     });
   };
 
+  async function checkTakenUsername(username) {
+    const usernameTaken = await apiCalls.checkUsername(username);
+    return usernameTaken;
+  }
+
   async function handleFormSubmit(e) {
     e.preventDefault();
-    const userData = { ...formState };
-    delete userData.confirmPassword;
-    const loginResult = await apiCalls.createUser(userData);
-    if (loginResult) {
+    const usernameTaken = await checkTakenUsername(formState.username);
+    console.log(usernameTaken);
+    if (!usernameTaken) {
+      const userData = { ...formState };
+      delete userData.confirmPassword;
+      const signUpResult = await apiCalls.createUser(userData);
+      if (signUpResult.token) {
+        window.location.href = "/profile";
+      }
+    } else {
+      // add different way to alert the user, maybe a tool tip
+      alert("Sorry! This username is taken");
+      //make input box red
+      document.getElementById("username").classList.add("warning");
     }
   }
 
   return (
     <div>
       <h1>Sign in</h1>
-      <form id="signIn-form" onSubmit={handleFormSubmit}>
+      <form id="signUp-form" onSubmit={handleFormSubmit}>
         <input
           id="email"
           className="form-input"
@@ -87,6 +102,9 @@ function SignUp() {
         <label id="riotUsernameLabel" htmlFor="riotUsername">
           Riot Username
         </label>
+        <button type="submit" id="signUpSubmitButton">
+          Create account
+        </button>
       </form>
     </div>
   );

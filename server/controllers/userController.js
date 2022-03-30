@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const History = require("../models/History");
 const { signToken } = require("../utils/auth");
+const { find } = require("../models/User");
 
 const userController = {
   getUsers(req, res) {
@@ -16,7 +17,7 @@ const userController = {
       });
   },
   getSingleUser(req, res) {
-    if (req.params.userId === req.user._id) {
+    if (req.params.userId === req.user?._id) {
       User.findById(req.params.userId)
         .populate("userHistory")
         .then((userData) => {
@@ -30,6 +31,14 @@ const userController = {
           console.log(err);
           res.json(err);
         });
+    }
+  },
+  checkUsername: async function (req, res) {
+    const userInfo = await User.find({ username: req.params.un });
+    if (userInfo[0]) {
+      res.json({ result: true });
+    } else {
+      res.json({ result: false });
     }
   },
   createUser: async function (req, res) {

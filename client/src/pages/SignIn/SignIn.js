@@ -61,6 +61,9 @@ function SignIn() {
         <label id="checkBox-label" htmlFor="showPassword-checkbox">
           Show Password
         </label>
+        <button type="submit" id="signInSubmitButton">
+          Sign in
+        </button>
       </form>
       <a id="signUp-link" href="/signUp">
         Create an account

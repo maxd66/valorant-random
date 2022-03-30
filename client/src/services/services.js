@@ -18,6 +18,17 @@ class ApiCalls {
     }
   }
 
+  async checkUsername(username) {
+    const url = `${dbLink}/api/user/username/${username}`;
+    try {
+      const response = await fetch(url);
+      const deliverable = await response.json();
+      return deliverable.result;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async createUser(data) {
     try {
       const url = `${dbLink}/api/user`;
@@ -26,8 +37,10 @@ class ApiCalls {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      Auth.login(response.token);
-      return await response.json();
+      console.log(response);
+      const deliverable = await response.json();
+      Auth.login(deliverable.token);
+      return deliverable;
     } catch (error) {
       console.log(error);
       return;
@@ -42,8 +55,9 @@ class ApiCalls {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      Auth.login(response.token);
-      return await response.json();
+      const deliverable = await response.json();
+      Auth.login(deliverable.token);
+      return deliverable;
     } catch (err) {
       console.log(err);
     }

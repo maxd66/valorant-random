@@ -2,6 +2,7 @@ const router = require("express").Router();
 const {
   getUsers,
   getSingleUser,
+  checkUsername,
   createUser,
   login,
   updateUser,
@@ -17,6 +18,8 @@ router
   .get(authMiddleware, getSingleUser)
   .put(authMiddleware, updateUser)
   .delete(authMiddleware, deleteUser);
+
+router.get("/username/:un", checkUsername);
 
 router.post("/login", login);
 

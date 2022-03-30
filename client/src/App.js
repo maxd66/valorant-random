@@ -2,9 +2,10 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Auth from "./services/auth";
 import Nav from "./components/Nav/Nav";
+import Main from "./pages/Main/Main";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
-import Main from "./pages/Main/Main";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   const loggedIn = Auth.loggedIn();
@@ -38,11 +39,6 @@ function App() {
               </button>
             </a>
           )}
-          <a href="/signIn">
-            <button id="signInButton" className="nav-button">
-              Sign in
-            </button>
-          </a>
           <Route exact path="/">
             <Main />
           </Route>
@@ -51,6 +47,9 @@ function App() {
           </Route>
           <Route exact path="/signUp">
             <SignUp />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
           </Route>
         </Router>
       </main>
