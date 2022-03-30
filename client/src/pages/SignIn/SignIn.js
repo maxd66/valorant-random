@@ -20,7 +20,7 @@ function SignIn() {
 
   async function handleFormSubmit(e) {
     e.preventDefault();
-    const loginResult = await apiCalls.login();
+    const loginResult = await apiCalls.login(formState);
     if (loginResult) {
     }
   }
@@ -62,10 +62,13 @@ function SignIn() {
           Show Password
         </label>
       </form>
-      <a id="signUp-link" href="/signup">
+      <a id="signUp-link" href="/signUp">
         Create an account
       </a>
-      <a id="forgotPassword-link" href="https://google.com">
+      <a
+        id="forgotPassword-link"
+        href="https://www.google.com/search?q=how+to+stop+being+an+idiot+and+forgetting+my+password"
+      >
         Forgot Password?
       </a>
     </div>
