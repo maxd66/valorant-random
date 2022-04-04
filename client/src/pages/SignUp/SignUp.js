@@ -19,7 +19,18 @@ function SignUp() {
     });
   };
 
+  function validatePassword(password) {
+    if (password < 7 || password > 64) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   async function checkTakenUsername(username) {
+    if (username < 6 || username > 24) {
+      return true;
+    }
     const usernameTaken = await apiCalls.checkUsername(username);
     return usernameTaken;
   }
@@ -27,8 +38,8 @@ function SignUp() {
   async function handleFormSubmit(e) {
     e.preventDefault();
     const usernameTaken = await checkTakenUsername(formState.username);
-    console.log(usernameTaken);
-    if (!usernameTaken) {
+    const validPassword = validatePassword(formState.password);
+    if (!usernameTaken && validPassword) {
       const userData = { ...formState };
       delete userData.confirmPassword;
       const signUpResult = await apiCalls.createUser(userData);

@@ -68,9 +68,10 @@ const userController = {
   },
   updateUser(req, res) {
     if (req.params.userId === req.user._id) {
-      User.findByIdAndUpdate(req.params.userId, req.body)
+      User.findByIdAndUpdate(req.params.userId, req.body, { new: true })
         .then((userData) => {
-          res.json(userData);
+          const newToken = signToken(userData);
+          res.json({ userData, token: newToken });
         })
         .catch((err) => {
           console.log(err);
@@ -100,26 +101,64 @@ const userController = {
       const historyId = user.userHistory;
       switch (req.params.field) {
         case "agent":
-          History.findByIdAndUpdate(historyId, { $inc: { agentsGenerated: 1 } })
-            .then((dbResponse) => {
-              res.json({
-                response: dbResponse,
-                msg: "response is previous state, action successful",
+          const userHistory = await History.findById(historyId);
+          if (userHistory.lastTenAgents.length < 10) {
+            History.findByIdAndUpdate(
+              historyId,
+              {
+                $inc: { agentsGenerated: 1 },
+                $push: {
+                  lastTenAgents: {
+                    $each: [req.body.agentId],
+                    $position: 0,
+                  },
+                },
+              },
+              { new: true }
+            )
+              .then((dbResponse) => {
+                res.json({
+                  response: dbResponse,
+                });
+              })
+              .catch((err) => {
+                console.log(err);
+                res.json(err);
               });
-            })
-            .catch((err) => {
-              console.log(err);
-              res.json(err);
-            });
+          } else {
+            const agentArr = [...userHistory.lastTenAgents];
+            agentArr.pop();
+            agentArr.unshift(req.body.agentId);
+            History.findByIdAndUpdate(
+              historyId,
+              {
+                $inc: { agentsGenerated: 1 },
+                lastTenAgents: agentArr,
+              },
+              { new: true }
+            )
+              .then((dbResponse) => {
+                res.json({
+                  response: dbResponse,
+                });
+              })
+              .catch((err) => {
+                console.log(err);
+                res.json(err);
+              });
+          }
           break;
         case "weapon":
-          History.findByIdAndUpdate(historyId, {
-            $inc: { weaponsGenerated: 1 },
-          })
+          History.findByIdAndUpdate(
+            historyId,
+            {
+              $inc: { weaponsGenerated: 1 },
+            },
+            { new: true }
+          )
             .then((dbResponse) => {
               res.json({
                 response: dbResponse,
-                msg: "response is previous state, action successful",
               });
             })
             .catch((err) => {
@@ -128,13 +167,16 @@ const userController = {
             });
           break;
         case "strategy":
-          History.findByIdAndUpdate(historyId, {
-            $inc: { strategiesGenerated: 1 },
-          })
+          History.findByIdAndUpdate(
+            historyId,
+            {
+              $inc: { strategiesGenerated: 1 },
+            },
+            { new: true }
+          )
             .then((dbResponse) => {
               res.json({
                 response: dbResponse,
-                msg: "response is previous state, action successful",
               });
             })
             .catch((err) => {

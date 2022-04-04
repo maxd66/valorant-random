@@ -47,6 +47,23 @@ class ApiCalls {
     }
   }
 
+  async updateUser(data, userId, token) {
+    try {
+      const url = `${dbLink}/api/user/${userId}`;
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      });
+      const deliverable = await response.json();
+      Auth.login(deliverable.token);
+      return deliverable;
+    } catch (err) {}
+  }
+
   async login(data) {
     try {
       const url = `${dbLink}/api/user/login`;
@@ -65,24 +82,27 @@ class ApiCalls {
 
   async getAllAgents() {
     try {
-      const localInfo = localStorage.getItem("allAgents");
+      const localInfo = JSON.parse(localStorage.getItem("allAgents"));
       if (localInfo) {
-        const storedDate = localStorage.getItem("agentDate");
+        const storedDate = JSON.parse(localStorage.getItem("agentDate"));
         const staleData = this.checkForStaleInfo(storedDate);
         if (!staleData) {
           return localInfo;
         }
       }
-      const url = `${valorantApiLink}/agents`;
+      const url = `${valorantApiLink}/agents?isPlayableCharacter=true`;
       const agentInfo = await fetch(url);
       const deliverable = await agentInfo.json();
-      localStorage.setItem("allAgents", deliverable);
+      localStorage.setItem("allAgents", JSON.stringify(deliverable));
       const today = new Date();
-      localStorage.setItem("agentDate", {
-        year: today.getFullYear(),
-        month: today.getMonth(),
-        day: today.getDate(),
-      });
+      localStorage.setItem(
+        "agentDate",
+        JSON.stringify({
+          year: today.getFullYear(),
+          month: today.getMonth(),
+          day: today.getDate(),
+        })
+      );
       return deliverable;
     } catch (err) {
       console.log(err);
@@ -93,7 +113,7 @@ class ApiCalls {
     try {
       const url = `${valorantApiLink}/agents/${agentId}`;
       const agentInfo = await fetch(url);
-      if (agentInfo.status === 200) {
+      if (agentInfo.status < 300) {
         return await agentInfo.json();
       } else {
         return "agent not found";
@@ -105,9 +125,9 @@ class ApiCalls {
 
   async getAllWeapons() {
     try {
-      const localInfo = localStorage.getItem("allWeapons");
+      const localInfo = JSON.parse(localStorage.getItem("allWeapons"));
       if (localInfo) {
-        const storedDate = localStorage.getItem("weaponDate");
+        const storedDate = JSON.parse(localStorage.getItem("weaponDate"));
         const staleData = this.checkForStaleInfo(storedDate);
         if (!staleData) {
           return localInfo;
@@ -116,13 +136,16 @@ class ApiCalls {
       const url = `${valorantApiLink}/weapons`;
       const weaponInfo = await fetch(url);
       const deliverable = await weaponInfo.json();
-      localStorage.setItem("allWeapons", deliverable);
+      localStorage.setItem("allWeapons", JSON.stringify(deliverable));
       const today = new Date();
-      localStorage.setItem("weaponDate", {
-        year: today.getFullYear(),
-        month: today.getMonth(),
-        day: today.getDate(),
-      });
+      localStorage.setItem(
+        "weaponDate",
+        JSON.stringify({
+          year: today.getFullYear(),
+          month: today.getMonth(),
+          day: today.getDate(),
+        })
+      );
       return deliverable;
     } catch (err) {
       console.log(err);

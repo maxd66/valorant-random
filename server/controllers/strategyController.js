@@ -65,9 +65,16 @@ const strategyController = {
     } else {
       wolObj.losses = 1;
     }
-    Strategy.findByIdAndUpdate(req.params.strategyId, { $inc: wolObj })
+    Strategy.findByIdAndUpdate(
+      req.params.strategyId,
+      { $inc: wolObj },
+      { new: true }
+    )
       .then((dbResponse) => {
-        res.json({ msg: `Success! ${req.params.wol} increased by 1` });
+        res.json({
+          msg: `Success! ${req.params.wol} increased by 1`,
+          response: dbResponse,
+        });
       })
       .catch((err) => {
         console.log(err);

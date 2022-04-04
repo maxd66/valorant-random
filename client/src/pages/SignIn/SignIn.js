@@ -22,6 +22,7 @@ function SignIn() {
     e.preventDefault();
     const loginResult = await apiCalls.login(formState);
     if (loginResult) {
+      window.location.href = "/";
     }
   }
 
