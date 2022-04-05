@@ -11,6 +11,8 @@ function Main() {
   const handleHeaderClick = (event) => {
     const buttonClicked = event.target.id;
     setRandomizerState(buttonClicked);
+    const mainEl = document.getElementById("formContainer");
+    generateRandomForm(mainEl);
   };
 
   useEffect(() => {
@@ -24,9 +26,7 @@ function Main() {
     return <h1>Loading...</h1>;
   }
 
-  let initialLoad = true;
-
-  const generateRandomForm = () => {
+  const generateRandomForm = (element) => {
     //need to request strategies filtered by the user parameters.
     //need to rethink this loading system, needs to be a function of a click
     //so that I can run it async. I think I should redesign so that it returns
@@ -34,43 +34,17 @@ function Main() {
     //run this function and rewrite the body after the api has been called.
     switch (randomizerState) {
       case "agent":
-        if (!initialLoad) {
-          apiCalls
-            .getAllAgents()
-            .then((response) => {
-              setRandomFormArray(response.data);
-              return (
-                <div>
-                  <h1>Agent form {randomFormArray[0].displayName}</h1>
-                </div>
-              );
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          return (
-            <div>
-              <h1>Agent form {randomFormArray[0].displayName}</h1>
-            </div>
-          );
-        }
-        break;
+        return (
+          <div>
+            <h1>Agent form {randomFormArray[0].displayName}</h1>
+          </div>
+        );
       case "weapon":
-        apiCalls
-          .getAllWeapons()
-          .then((response) => {
-            setRandomFormArray(response.data);
-            return (
-              <div>
-                <h1>Weapon form {randomFormArray[0].displayName}</h1>
-              </div>
-            );
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        break;
+        return (
+          <div>
+            <h1>Weapon form {randomFormArray[0].displayName}</h1>
+          </div>
+        );
       case "strategy":
         // No api call yet, will run the call when the user inputs parameters
         return (
@@ -83,6 +57,7 @@ function Main() {
         break;
     }
   };
+
   return (
     <div>
       <h1>Main</h1>
@@ -110,7 +85,7 @@ function Main() {
           Random Strategy
         </button>
       </section>
-      <main>{generateRandomForm}</main>
+      <main></main>
     </div>
   );
 }
