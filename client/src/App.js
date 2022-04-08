@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Auth from "./services/auth";
 import Nav from "./components/Nav/Nav";
-import Main from "./pages/Main/Main";
+import AgentGen from "./pages/AgentGen/AgentGen";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Profile from "./pages/Profile/Profile";
@@ -40,7 +40,7 @@ function App() {
             </a>
           )}
           <Route exact path="/">
-            <Main />
+            <AgentGen />
           </Route>
           <Route exact path="/signIn">
             <SignIn />
