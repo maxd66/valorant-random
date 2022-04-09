@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import apiCalls from "../../services/services";
 import randomize from "../../services/randomizer";
+import Auth from "../../services/auth";
 import "./AgentGen.css";
 
 function AgentGen() {
@@ -19,7 +20,11 @@ function AgentGen() {
 
   const handleHeaderClick = (event) => {
     const buttonClicked = event.target.id;
-    window.location.href(`/${buttonClicked.id}`);
+    if (buttonClicked === "agent") {
+      window.location.href = `/`;
+    } else {
+      window.location.href = `/${buttonClicked}`;
+    }
   };
 
   const handleCheckClick = (position) => {
@@ -29,7 +34,7 @@ function AgentGen() {
 
     setChecked(updatedCheckedState);
   };
-  const formHandler = (event) => {
+  const formHandler = async (event) => {
     event.preventDefault();
     const selectedAgents = agentArr.filter((agent, index) => {
       return checked[index];
@@ -38,8 +43,21 @@ function AgentGen() {
     const agentBlock = (
       <div id="generatedAgentContainer">
         <h2>{generatedAgent.displayName}</h2>
+        <a id="moreInfo-link" href={`/moreInfo?agent=${generatedAgent.uuid}`}>
+          More about {generatedAgent.displayName}
+        </a>
       </div>
     );
+    if (Auth.loggedIn()) {
+      const userData = Auth.getProfile();
+      const response = await apiCalls.updateUserHistory(
+        { agentId: generatedAgent.uuid },
+        userData._id,
+        "agent",
+        Auth.getToken()
+      );
+      console.log(response);
+    }
     setResult(agentBlock);
     document.getElementById("resultContainer").classList.remove("hidden");
     document.getElementById("agentSelectForm").classList.add("hidden");

@@ -61,7 +61,26 @@ class ApiCalls {
       const deliverable = await response.json();
       Auth.login(deliverable.token);
       return deliverable;
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async updateUserHistory(data, userId, field, token) {
+    try {
+      const url = `${dbLink}api/user/history/${userId}/${field}`;
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      });
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async login(data) {

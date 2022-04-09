@@ -3,7 +3,7 @@
 }
 
 #agentGenContainer {
-  margin-top: 100px;
+  margin: 100px 50px 0px;
 }
 
 #agentSelectContainer {
@@ -35,4 +35,10 @@
   right: 3px;
   height: 20px;
   width: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  #agentGenContainer {
+    margin: 100px 5px 0px;
+  }
 }

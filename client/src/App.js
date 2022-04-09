@@ -6,6 +6,7 @@ import AgentGen from "./pages/AgentGen/AgentGen";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Profile from "./pages/Profile/Profile";
+import WeaponGen from "./pages/WeaponGen/WeaponGen";
 
 function App() {
   const loggedIn = Auth.loggedIn();
@@ -41,6 +42,9 @@ function App() {
           )}
           <Route exact path="/">
             <AgentGen />
+          </Route>
+          <Route exact path="/weapon">
+            <WeaponGen />
           </Route>
           <Route exact path="/signIn">
             <SignIn />
