@@ -35,6 +35,10 @@ function WeaponGen() {
       });
       setWeaponArr(sortingArray);
       setChecked(new Array(response.data.length).fill(true));
+      const storedWeaponState = localStorage.getItem("weaponState");
+      if (storedWeaponState) {
+        setChecked(JSON.parse(storedWeaponState));
+      }
       setLoading(false);
     });
   }, []);
@@ -54,7 +58,7 @@ function WeaponGen() {
     const updatedCheckedState = checked.map((item, index) =>
       index === position ? !item : item
     );
-
+    localStorage.setItem("weaponState", JSON.stringify(updatedCheckedState));
     setChecked(updatedCheckedState);
   };
   const formHandler = async (event) => {
@@ -66,6 +70,14 @@ function WeaponGen() {
     const weaponBlock = (
       <div id="generatedWeaponContainer">
         <h2>{generatedWeapon.displayName}</h2>
+        <h4>
+          <i>{generatedWeapon.category.split("::")[1]}</i>
+        </h4>
+        <img
+          id="generatedWeaponPortrait"
+          alt="portrait of Weapon"
+          src={generatedWeapon.displayIcon}
+        />
         <a id="moreInfo-link" href={`/moreInfo?weapon=${generatedWeapon.uuid}`}>
           More about {generatedWeapon.displayName}
         </a>
@@ -73,23 +85,36 @@ function WeaponGen() {
     );
     if (Auth.loggedIn()) {
       const userData = Auth.getProfile();
-      const response = await apiCalls.updateUserHistory(
+      await apiCalls.updateUserHistory(
         { weaponId: generatedWeapon.uuid },
         userData._id,
         "weapon",
         Auth.getToken()
       );
-      console.log(response);
     }
     setResult(weaponBlock);
     document.getElementById("resultContainer").classList.remove("hidden");
     document.getElementById("weaponSelectForm").classList.add("hidden");
+    document
+      .getElementById("extraFunctionButton-container")
+      .classList.add("hidden");
   };
 
   const changeSettings = (event) => {
     event.preventDefault();
     document.getElementById("resultContainer").classList.add("hidden");
     document.getElementById("weaponSelectForm").classList.remove("hidden");
+    document
+      .getElementById("extraFunctionButton-container")
+      .classList.remove("hidden");
+  };
+
+  const changeAllHandler = (boolean) => {
+    setChecked(checked.map(() => boolean));
+    localStorage.setItem(
+      "weaponState",
+      JSON.stringify(checked.map(() => boolean))
+    );
   };
 
   if (isLoading) {
@@ -105,7 +130,13 @@ function WeaponGen() {
         className="weaponSelectThumbnailContainer"
         key={weaponArr[i].displayName}
       >
-        <h2 className={checked[i] ? "weaponCaption" : "weaponCaption inactive"}>
+        <h2
+          className={
+            checked[i]
+              ? "caret-hidden weaponCaption"
+              : "caret-hidden weaponCaption inactive"
+          }
+        >
           {weaponArr[i].displayName}
         </h2>
         <img
@@ -135,14 +166,14 @@ function WeaponGen() {
       <section>
         <button
           id="agent"
-          className="header-button active"
+          className="header-button"
           onClick={handleHeaderClick}
         >
           Random Agent
         </button>
         <button
           id="weapon"
-          className="header-button"
+          className="header-button active"
           onClick={handleHeaderClick}
         >
           Random Weapon
@@ -157,8 +188,12 @@ function WeaponGen() {
       </section>
       <div id="resultContainer" className="hidden">
         {result}
-        <button id="tryAgain-button" className="button" onClick={formHandler}>
-          Try again
+        <button
+          id="generateAgain-button"
+          className="button"
+          onClick={formHandler}
+        >
+          Generate again
         </button>
         <button
           id="changeSettings-button"
@@ -173,19 +208,54 @@ function WeaponGen() {
           id="weaponSelectContainer"
           onClick={(e) => {
             if (e.target.nextSibling) {
-              const i = e.target.nextSibling.id;
-              const newState = [...checked];
-              newState.splice(i, 1, !checked[i]);
-              setChecked(newState);
+              if (e.target.id === "weaponSelectContainer") {
+                return;
+              }
+              if (e.target.nextSibling.nextSibling) {
+                const i = e.target.nextSibling.nextSibling.id;
+                const newState = [...checked];
+                newState.splice(i, 1, !checked[i]);
+                localStorage.setItem("weaponState", JSON.stringify(newState));
+                setChecked(newState);
+              } else {
+                const i = e.target.nextSibling.id;
+                const newState = [...checked];
+                newState.splice(i, 1, !checked[i]);
+                localStorage.setItem("weaponState", JSON.stringify(newState));
+                setChecked(newState);
+              }
             }
           }}
         >
           {weaponSelect}
         </div>
-        <button type="submit" id="weaponSelect-submitBtn" className="button">
+        <button
+          type="submit"
+          id="weaponSelect-submitBtn"
+          disabled={checked.every((element) => element === false)}
+          className="button"
+        >
           Generate
         </button>
       </form>
+      <div id="extraFunctionButton-container">
+        <button
+          className="button"
+          onClick={() => {
+            changeAllHandler(true);
+          }}
+        >
+          Select All
+        </button>
+        <button
+          className="button"
+          onClick={() => {
+            changeAllHandler(false);
+          }}
+        >
+          Unselect All
+        </button>
+      </div>
     </div>
   );
 }

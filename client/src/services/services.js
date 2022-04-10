@@ -171,6 +171,121 @@ class ApiCalls {
     }
   }
 
+  async getOneWeapon(weaponId) {
+    try {
+      const url = `${valorantApiLink}/weapons/${weaponId}`;
+      const weaponInfo = await fetch(url);
+      if (weaponInfo.status < 300) {
+        return await weaponInfo.json();
+      } else {
+        return "weapon not found";
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getAllStrategies() {
+    try {
+      const localInfo = JSON.parse(localStorage.getItem("allStrategies"));
+      if (localInfo) {
+        const storedDate = JSON.parse(localStorage.getItem("strategyDate"));
+        const staleData = this.checkForStaleInfo(storedDate);
+        if (!staleData) {
+          return localInfo;
+        }
+      }
+      const url = `${dbLink}/api/strategy/`;
+      const strategyInfo = await fetch(url);
+      const deliverable = await strategyInfo.json();
+      localStorage.setItem("allStrategies", JSON.stringify(deliverable));
+      const today = new Date();
+      localStorage.setItem(
+        "strategyDate",
+        JSON.stringify({
+          year: today.getFullYear(),
+          month: today.getMonth(),
+          day: today.getDate(),
+        })
+      );
+      return deliverable;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getFilteredStrategies(filterObj) {
+    //filterObj will have either a class or side key or both
+    const localInfo = JSON.parse(localStorage.getItem("allStrategies"));
+    if (localInfo) {
+      const storedDate = JSON.parse(localStorage.getItem("strategyDate"));
+      const staleData = this.checkForStaleInfo(storedDate);
+      if (!staleData) {
+        const filteredArray = localInfo.filter((strategy) => {
+          if (filterObj.class && filterObj.side) {
+            return (
+              strategy.class === filterObj.class &&
+              strategy.side === filterObj.side
+            );
+          } else if (filterObj.class) {
+            return strategy.class === filterObj.class;
+          } else {
+            return strategy.side === filterObj.side;
+          }
+        });
+        return filteredArray;
+      }
+    }
+    let url = "";
+    if (filterObj.class && filterObj.side) {
+      url = `${dbLink}/api/strategy/class/side/${filterObj.class}/${filterObj.side}`;
+    } else if (filterObj.class) {
+      url = `${dbLink}/api/strategy/class/${filterObj.class}`;
+    } else {
+      url = `${dbLink}/api/strategy/side/${filterObj.side}`;
+    }
+    try {
+      const strategyInfo = await fetch(url);
+      const deliverable = await strategyInfo.json();
+      if (deliverable) {
+        return deliverable;
+      } else {
+        return ["No strategies found"];
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getOneStrategy(strategyId) {
+    try {
+      const url = `${dbLink}/api/strategy/${strategyId}`;
+      const strategyInfo = await fetch(url);
+      if (strategyInfo.status < 300) {
+        return await strategyInfo.json();
+      } else {
+        return "strategy not found";
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async addWinOrLoss(strategyId, wol) {
+    try {
+      const url = `${dbLink}/api/strategy/${strategyId}/${wol}`;
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return await response.json();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   checkForStaleInfo(date) {
     if (!date) {
       return false;

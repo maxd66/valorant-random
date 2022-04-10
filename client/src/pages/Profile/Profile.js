@@ -113,7 +113,7 @@ function Profile() {
           src={thisAgent[0].displayIcon}
           onClick={handleAgentClick}
         />
-        <h3>{`${thisAgent[0].displayName}`}</h3>
+        <h3 className="caret-hidden">{`${thisAgent[0].displayName}`}</h3>
         <img
           className="ult-symbol"
           alt="ult symbol for this agent"
@@ -124,7 +124,7 @@ function Profile() {
     agentBlock.push(block);
   }
   return (
-    <div>
+    <div id="profilePageContainer">
       <h1 id="welcome-header">Hey {userData?.username}, welcome back!</h1>
       <section id="main-container">
         <form id="updateForm-container" onSubmit={handleFormSubmit}>

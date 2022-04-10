@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap");
 
+#profilePageContainer {
+  padding-top: 1px;
+}
+
 #agentListContainer {
   display: flex;
   flex-wrap: wrap;
@@ -30,8 +34,12 @@
   max-width: 50px;
 }
 
+.caret-hidden {
+  caret-color: transparent;
+}
+
 @media screen and (max-width: 1000px) {
-  #welcome-header {
-    padding-top: 2em;
+  #profilePageContainer {
+    padding-top: 50px;
   }
 }

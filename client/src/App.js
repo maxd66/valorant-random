@@ -7,6 +7,8 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Profile from "./pages/Profile/Profile";
 import WeaponGen from "./pages/WeaponGen/WeaponGen";
+import StrategyGen from "./pages/StrategyGen/StrategyGen";
+import MoreInfo from "./pages/MoreInfo/MoreInfo";
 
 function App() {
   const loggedIn = Auth.loggedIn();
@@ -46,6 +48,9 @@ function App() {
           <Route exact path="/weapon">
             <WeaponGen />
           </Route>
+          <Route exact path="/strategy">
+            <StrategyGen />
+          </Route>
           <Route exact path="/signIn">
             <SignIn />
           </Route>
@@ -54,6 +59,9 @@ function App() {
           </Route>
           <Route exact path="/profile">
             <Profile />
+          </Route>
+          <Route exact path="/moreInfo">
+            <MoreInfo />
           </Route>
         </Router>
       </main>
