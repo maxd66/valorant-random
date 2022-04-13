@@ -21,8 +21,15 @@ function Nav() {
       outerContainerId="outer-container"
     >
       <a id="homeNavLink" className="menu-item" href="/">
-        Home
+        Agents
       </a>
+      <a id="weaponNav" className="menu-item" href="/weapon">
+        Weapons
+      </a>
+      <a id="homeNavLink" className="menu-item" href="/strategy">
+        Strategies
+      </a>
+      <hr className="solid" />
       {loggedIn ? (
         <a id="profileNavLink" className="menu-item" href="/profile">
           My Profile

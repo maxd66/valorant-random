@@ -1,0 +1,52 @@
+.ability-icon {
+  max-width: 100px;
+}
+
+#role-DisplayIcon {
+  max-height: 1em;
+}
+
+.left {
+  color: white;
+  max-width: 50%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+
+.right {
+  color: white;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+#agent-portrait {
+  max-width: 100%;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 50px 10px;
+}
+
+#weaponResultContainer .flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 50px 30px 50px;
+  flex-wrap: wrap;
+}
+
+#stat-container {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.63);
+  margin: 20px 40px;
+}
+
+#weaponResultContainer .flex-container fieldset {
+  flex-grow: 1;
+  flex-basis: 45%;
+}
+
+#result-container {
+  padding-top: 10px;
+}

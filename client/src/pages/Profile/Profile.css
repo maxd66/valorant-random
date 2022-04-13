@@ -37,9 +37,3 @@
 .caret-hidden {
   caret-color: transparent;
 }
-
-@media screen and (max-width: 1000px) {
-  #profilePageContainer {
-    padding-top: 50px;
-  }
-}

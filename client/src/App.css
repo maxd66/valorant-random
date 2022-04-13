@@ -1,15 +1,32 @@
 .App {
   text-align: center;
 }
+.header-attempt {
+  background-color: rgb(202, 201, 201);
+  top: 0px;
+  min-width: 100%;
+  height: 100px;
+  position: fixed;
+}
+
+#valorandom-logo {
+  position: fixed;
+  left: 60px;
+  top: 12px;
+}
 
 .App-logo {
-  height: 40vmin;
   pointer-events: none;
+  max-height: 75px;
+}
+
+.padding-div {
+  height: 100px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 15s linear;
   }
 }
 

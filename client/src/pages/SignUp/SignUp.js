@@ -56,7 +56,7 @@ function SignUp() {
 
   return (
     <div>
-      <h1>Sign in</h1>
+      <h1>Sign up</h1>
       <form id="signUp-form" onSubmit={handleFormSubmit}>
         <input
           id="email"

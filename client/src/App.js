@@ -9,6 +9,7 @@ import Profile from "./pages/Profile/Profile";
 import WeaponGen from "./pages/WeaponGen/WeaponGen";
 import StrategyGen from "./pages/StrategyGen/StrategyGen";
 import MoreInfo from "./pages/MoreInfo/MoreInfo";
+import logo from "./assets/images/valoRandom-logo.png";
 
 function App() {
   const loggedIn = Auth.loggedIn();
@@ -27,21 +28,27 @@ function App() {
       <Nav />
       <main id="page-wrap" className="App">
         <Router>
-          {loggedIn ? (
-            <button
-              id="profileButton"
-              className="nav-button"
-              onClick={handleNavProfileClick}
-            >
-              My Profile
-            </button>
-          ) : (
-            <a href="/signIn">
-              <button id="signInButton" className="nav-button">
-                Sign in
-              </button>
+          <div className="header-attempt">
+            <a id="valorandom-logo" href="/">
+              <img className="App-logo" alt="valorandom logo" src={logo} />
             </a>
-          )}
+            {loggedIn ? (
+              <button
+                id="profileButton"
+                className="nav-button"
+                onClick={handleNavProfileClick}
+              >
+                My Profile
+              </button>
+            ) : (
+              <a href="/signIn">
+                <button id="signInButton" className="nav-button">
+                  Sign in
+                </button>
+              </a>
+            )}
+          </div>
+          <div className="padding-div">_</div>
           <Route exact path="/">
             <AgentGen />
           </Route>
