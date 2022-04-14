@@ -9,20 +9,102 @@ html {
   --thumb-border-radius: 0px;
 }
 
+#weaponSelectForm button {
+  font-family: "Electrolize", sans-serif;
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid rgb(126, 0, 0);
+  border-radius: 0px;
+  font-size: x-large;
+  font-weight: 700;
+}
+
+#weaponSelectForm button:hover {
+  box-shadow: inset 0px 0px 15px rgb(126, 0, 0);
+  padding: 12px;
+  cursor: pointer;
+  border: none;
+}
+
 #strategyPageContainer {
   padding-top: 10px;
 }
 
+#strategy-header-text {
+  border-bottom: 1px solid white;
+  padding: 3px 0px;
+}
+
+#strategyFormContainer {
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  background-color: rgba(0, 0, 0, 0.466);
+  margin: 0px 40px;
+  padding-bottom: 10px;
+}
+
+#strategyFormContainer button {
+  font-family: "Electrolize", sans-serif;
+  margin: 5px;
+  border-radius: 0px;
+  font-size: x-large;
+  font-weight: 500;
+  cursor: pointer;
+  transition: padding 0.25s ease-in-out;
+}
+
 .activeButton {
-  background-color: green;
+  padding: 10px 15px;
+  background-color: white;
+  border: rgb(68, 190, 68);
+}
+
+.activeButton:hover {
+  background-color: rgb(202, 202, 202);
 }
 
 .inactiveButton {
-  background-color: red;
+  padding: 6px 10px;
+  background-color: rgba(168, 168, 168, 0.616);
+  border: 1px solid white;
+}
+
+.inactiveButton:hover {
+  background-color: rgb(202, 202, 202);
+}
+
+#strategyGenerate-button:hover {
+  background-color: white;
+  box-shadow: inset 0px 0px 20px rgb(126, 0, 0);
 }
 
 .hidden {
   display: none;
+}
+
+#slider-label {
+  font-size: x-large;
+  padding: 10px;
+}
+
+#resultContainer {
+  font-size: x-large;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  background-color: rgba(0, 0, 0, 0.466);
+  margin: 0px 40px;
+  padding: 0px 10px 10px;
+}
+
+@media screen and (max-width: 600px) {
+  #strategyFormContainer {
+    margin: 0px;
+  }
+
+  #resultContainer {
+    font-size: large;
+    margin: 0px;
+  }
 }
 
 input[type="range"]::-webkit-slider-runnable-track {

@@ -79,7 +79,7 @@ function WeaponGen() {
           src={generatedWeapon.displayIcon}
         />
         <a id="moreInfo-link" href={`/moreInfo?weapon=${generatedWeapon.uuid}`}>
-          More about {generatedWeapon.displayName}
+          More about the {generatedWeapon.displayName}
         </a>
       </div>
     );
@@ -134,7 +134,7 @@ function WeaponGen() {
           className={
             checked[i]
               ? "caret-hidden weaponCaption"
-              : "caret-hidden weaponCaption inactive"
+              : "caret-hidden weaponCaption inactive-text"
           }
         >
           {weaponArr[i].displayName}
@@ -166,21 +166,21 @@ function WeaponGen() {
       <section>
         <button
           id="agent"
-          className="header-button"
+          className="header-button inactive-header"
           onClick={handleHeaderClick}
         >
           Random Agent
         </button>
         <button
           id="weapon"
-          className="header-button active"
+          className="header-button"
           onClick={handleHeaderClick}
         >
           Random Weapon
         </button>
         <button
           id="strategy"
-          className="header-button"
+          className="header-button inactive-header"
           onClick={handleHeaderClick}
         >
           Random Strategy

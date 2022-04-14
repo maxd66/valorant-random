@@ -225,12 +225,12 @@ class ApiCalls {
           if (filterObj.class && filterObj.side) {
             return (
               strategy.class === filterObj.class &&
-              strategy.side === filterObj.side
+              (strategy.side === filterObj.side || strategy.side === "na")
             );
           } else if (filterObj.class) {
             return strategy.class === filterObj.class;
           } else {
-            return strategy.side === filterObj.side;
+            return strategy.side === filterObj.side || strategy.side === "na";
           }
         });
         return filteredArray;

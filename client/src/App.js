@@ -10,6 +10,7 @@ import WeaponGen from "./pages/WeaponGen/WeaponGen";
 import StrategyGen from "./pages/StrategyGen/StrategyGen";
 import MoreInfo from "./pages/MoreInfo/MoreInfo";
 import logo from "./assets/images/valoRandom-logo.png";
+import agentBackground from "./assets/images/simple.jpg";
 
 function App() {
   const loggedIn = Auth.loggedIn();
@@ -24,11 +25,18 @@ function App() {
     }
   };
   return (
-    <div id="outer-container">
+    <div
+      id="outer-container"
+      style={{
+        backgroundImage: `url(${agentBackground})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <Nav />
       <main id="page-wrap" className="App">
         <Router>
-          <div className="header-attempt">
+          <div className="header-attempt" style={{ zIndex: "10" }}>
             <a id="valorandom-logo" href="/">
               <img className="App-logo" alt="valorandom logo" src={logo} />
             </a>

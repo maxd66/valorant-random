@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import apiCalls from "../../services/services";
+import "./SignUp.css";
 
 function SignUp() {
   const [formState, setFormState] = useState({
@@ -55,67 +56,70 @@ function SignUp() {
   }
 
   return (
-    <div>
-      <h1>Sign up</h1>
+    <div id="createAccount-container">
+      <h1>Create an account</h1>
       <form id="signUp-form" onSubmit={handleFormSubmit}>
-        <input
-          id="email"
-          className="form-input"
-          name="email"
-          type="email"
-          onChange={handleChange}
-          value={formState.email}
-        ></input>
-        <label id="emailLabel" htmlFor="email">
-          Email
-        </label>
-        <input
-          id="password"
-          className="form-input"
-          name="password"
-          type="text"
-          onChange={handleChange}
-          value={formState.password}
-        ></input>
-        <label id="passwordLabel" htmlFor="password">
-          Password
-        </label>
-        <input
-          id="confirmPassword"
-          className="form-input"
-          name="confirmPassword"
-          type="text"
-          onChange={handleChange}
-          value={formState.confirmPassword}
-        ></input>
-        <label id="confirmPasswordLabel" htmlFor="confirmPassword">
-          Confirm Password
-        </label>
-        <input
-          id="username"
-          className="form-input"
-          name="username"
-          type="text"
-          onChange={handleChange}
-          value={formState.username}
-        ></input>
-        <label id="usernameLabel" htmlFor="username">
-          Username
-        </label>
-        <input
-          id="riotUsername"
-          className="form-input"
-          name="riotUsername"
-          type="text"
-          onChange={handleChange}
-          value={formState.riotUsername}
-        ></input>
-        <label id="riotUsernameLabel" htmlFor="riotUsername">
-          Riot Username
-        </label>
+        <div>
+          <input
+            id="email"
+            className="form-input"
+            name="email"
+            type="email"
+            onChange={handleChange}
+            value={formState.email}
+            placeholder="Email"
+          ></input>
+        </div>
+        <div>
+          <input
+            id="password"
+            className="form-input"
+            name="password"
+            type="text"
+            onChange={handleChange}
+            value={formState.password}
+            placeholder="Password"
+          ></input>
+        </div>
+        <div>
+          <input
+            id="confirmPassword"
+            className="form-input"
+            name="confirmPassword"
+            type="text"
+            onChange={handleChange}
+            value={formState.confirmPassword}
+            placeholder="Confirm Password"
+          ></input>
+        </div>
+        <div>
+          <input
+            id="username"
+            className="form-input"
+            name="username"
+            type="text"
+            onChange={handleChange}
+            value={formState.username}
+            placeholder="Username"
+          ></input>
+        </div>
+        <div>
+          <input
+            id="riotUsername"
+            className="form-input"
+            name="riotUsername"
+            type="text"
+            onChange={handleChange}
+            value={formState.riotUsername}
+            placeholder="Riot Username"
+          ></input>
+        </div>
         <button type="submit" id="signUpSubmitButton">
           Create account
         </button>
+        <div>
+          <a href="/signIn">Already have an account?</a>
+        </div>
       </form>
     </div>
   );

@@ -135,21 +135,21 @@ function AgentGen() {
       <section>
         <button
           id="agent"
-          className="header-button active"
+          className="header-button"
           onClick={handleHeaderClick}
         >
           Random Agent
         </button>
         <button
           id="weapon"
-          className="header-button"
+          className="header-button inactive-header"
           onClick={handleHeaderClick}
         >
           Random Weapon
         </button>
         <button
           id="strategy"
-          className="header-button"
+          className="header-button inactive-header"
           onClick={handleHeaderClick}
         >
           Random Strategy

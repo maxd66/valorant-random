@@ -269,21 +269,21 @@ function StrategyGen() {
       <section>
         <button
           id="agent"
-          className="header-button"
+          className="header-button inactive-header"
           onClick={handleHeaderClick}
         >
           Random Agent
         </button>
         <button
           id="weapon"
-          className="header-button"
+          className="header-button inactive-header"
           onClick={handleHeaderClick}
         >
           Random Weapon
         </button>
         <button
           id="strategy"
-          className="header-button active"
+          className="header-button"
           onClick={handleHeaderClick}
         >
           Random Strategy
@@ -296,6 +296,9 @@ function StrategyGen() {
         <div>{wolStats}</div>
       </div>
       <div id="strategyFormContainer">
+        <h3 id="strategy-header-text">
+          Please select at least one option from both of the following
+        </h3>
         <div>
           <h3>Type of strategies included</h3>
           <button
@@ -346,7 +349,8 @@ function StrategyGen() {
           <h3 id="sliderHeader">Number of participating players</h3>
           <p>
             This is based on our recommended number of players for each
-            strategy. Tactical strategies assume you have five participants.
+            strategy.{" "}
+            <b>Tactical strategies assume you have five participants.</b>
           </p>
           <input
             id="playerSlider"
@@ -358,10 +362,13 @@ function StrategyGen() {
             onChange={filterHandler}
             type="range"
           />
-          <label htmlFor="playerSlider">{filterState.playerSlider}</label>
+          <label id="slider-label" htmlFor="playerSlider">
+            {filterState.playerSlider}
+          </label>
         </div>
         <button
           disabled={!validFilter}
+          id="strategyGenerate-button"
           className={`button ${
             validFilter ? "activeButton" : "inactiveButton"
           }`}

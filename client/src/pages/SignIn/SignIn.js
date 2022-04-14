@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import apiCalls from "../../services/services";
+import "./SignIn.css";
 
 function SignIn() {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -27,41 +28,43 @@ function SignIn() {
   }
 
   return (
-    <div>
-      <h1>Sign in</h1>
+    <div id="signIn-Container">
+      <h1 id="signIn-header">Sign in</h1>
       <form id="signIn-form" onSubmit={handleFormSubmit}>
-        <input
-          id="email"
-          className="form-input"
-          name="email"
-          type="email"
-          onChange={handleChange}
-          value={formState.email}
-        ></input>
-        <label id="emailLabel" htmlFor="email">
-          Email
-        </label>
-        <input
-          id="password"
-          className="form-input"
-          name="password"
-          type={checked ? "text" : "password"}
-          onChange={handleChange}
-          value={formState.password}
-        ></input>
-        <label id="passwordLabel" htmlFor="password">
-          Password
-        </label>
-        <input
-          id="showPassword-checkbox"
-          name="showPassword-checkbox"
-          type="checkbox"
-          onChange={handleCheckClick}
-          checked={checked}
-        />
-        <label id="checkBox-label" htmlFor="showPassword-checkbox">
-          Show Password
-        </label>
+        <div className="inputEl">
+          <input
+            id="email"
+            className="form-input"
+            name="email"
+            type="email"
+            onChange={handleChange}
+            value={formState.email}
+            placeholder="Email"
+          ></input>
+        </div>
+        <div className="inputEl">
+          <input
+            id="password"
+            className="form-input"
+            name="password"
+            type={checked ? "text" : "password"}
+            onChange={handleChange}
+            value={formState.password}
+            placeholder="Password"
+          ></input>
+        </div>
+        <div>
+          <input
+            id="showPassword-checkbox"
+            name="showPassword-checkbox"
+            type="checkbox"
+            onChange={handleCheckClick}
+            checked={checked}
+          />
+          <label id="checkBox-label" htmlFor="showPassword-checkbox">
+            Show Password
+          </label>
+        </div>
         <button type="submit" id="signInSubmitButton">
           Sign in
         </button>

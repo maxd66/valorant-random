@@ -78,18 +78,16 @@ function MoreInfo() {
     <div
       style={{
         backgroundImage: `url(${
-          apiResults?.background ||
-          apiResults.fullPortraitV2 ||
-          apiResults.shopData?.newImage ||
-          valorantV
+          apiResults?.background || apiResults.fullPortraitV2 || valorantV
         })`,
         backgroundPosition: "center",
-        backgroundSize: "25%",
+        backgroundSize: `25%`,
+        minHeight: "100vh",
       }}
     >
       <div id="result-container">
         {agent ? (
-          <div>
+          <div id="agentResultContainer">
             <div className="flex-container">
               <div className="left">
                 <h1>{apiResults?.displayName}</h1>
@@ -213,7 +211,11 @@ function MoreInfo() {
         ) : (
           <div id="weaponResultContainer">
             <h1>{apiResults?.displayName}</h1>
-            <img alt="weapon display icon" src={apiResults?.displayIcon} />
+            <img
+              id="weaponDisplayIcon"
+              alt="weapon display icon"
+              src={apiResults?.displayIcon}
+            />
             <h2>Category: {apiResults?.category?.split("::")[1]}</h2>
             <h2>
               <i>
@@ -264,111 +266,21 @@ function MoreInfo() {
                     : "N/A"}
                 </h3>
               </fieldset>
-              {/* </div> */}
-              {/* <div id="column2" className="stat-column"> */}
               <fieldset>
                 <legend>Zoom Multiplier</legend>
                 <h3>
-                  {apiResults?.weaponStats
-                    ? apiResults.weaponStats.adsStats?.zoomMultiplier
-                    : "N/A"}{" "}
-                  x
+                  {apiResults?.weaponStats.adsStats
+                    ? apiResults.weaponStats.adsStats?.zoomMultiplier + " x"
+                    : "N/A"}
                 </h3>
               </fieldset>
               {rangeBlock}
-              {/* <fieldset>
-                <legend>
-                  {apiResults.weaponStats
-                    ? apiResults.weaponStats.damageRanges[0]?.rangeStartMeters +
-                      " - " +
-                      apiResults.weaponStats.damageRanges[0]?.rangeEndMeters +
-                      " m"
-                    : "N/A"}{" "}
-                  Range Damage
-                </legend>
-                <h3>
-                  Head:
-                  {apiResults?.weaponStats
-                    ? apiResults.weaponStats.damageRanges[0]?.headDamage
-                    : "N/A"}
-                </h3>
-                <h3>
-                  Body:
-                  {apiResults?.weaponStats
-                    ? apiResults.weaponStats.damageRanges[0]?.bodyDamage
-                    : "N/A"}
-                </h3>
-                <h3>
-                  Leg:
-                  {apiResults?.weaponStats
-                    ? apiResults.weaponStats.damageRanges[0]?.legDamage
-                    : "N/A"}
-                </h3>
-              </fieldset>
-              <fieldset>
-                <legend>
-                  {apiResults.weaponStats
-                    ? apiResults.weaponStats.damageRanges[1]?.rangeStartMeters +
-                      " - " +
-                      apiResults.weaponStats.damageRanges[1]?.rangeEndMeters +
-                      " m"
-                    : "N/A"}{" "}
-                  Range Damage
-                </legend>
-                <h3>
-                  Head:
-                  {apiResults?.weaponStats
-                    ? apiResults.weaponStats.damageRanges[1]?.headDamage
-                    : "N/A"}
-                </h3>
-                <h3>
-                  Body:
-                  {apiResults?.weaponStats
-                    ? apiResults.weaponStats.damageRanges[1]?.bodyDamage
-                    : "N/A"}
-                </h3>
-                <h3>
-                  Leg:
-                  {apiResults?.weaponStats
-                    ? apiResults.weaponStats.damageRanges[1]?.legDamage
-                    : "N/A"}
-                </h3>
-              </fieldset>
-              <fieldset>
-                <legend>
-                  {apiResults.weaponStats
-                    ? apiResults.weaponStats.damageRanges[2]?.rangeStartMeters +
-                      " - " +
-                      apiResults.weaponStats.damageRanges[2]?.rangeEndMeters +
-                      "+ m"
-                    : "N/A"}{" "}
-                  Range Damage
-                </legend>
-                <h3>
-                  Head:
-                  {apiResults?.weaponStats
-                    ? apiResults.weaponStats.damageRanges[2]?.headDamage
-                    : "N/A"}
-                </h3>
-                <h3>
-                  Body:
-                  {apiResults?.weaponStats
-                    ? apiResults.weaponStats.damageRanges[2]?.bodyDamage
-                    : "N/A"}
-                </h3>
-                <h3>
-                  Leg:
-                  {apiResults?.weaponStats
-                    ? apiResults.weaponStats.damageRanges[2]?.legDamage
-                    : "N/A"}
-                </h3>
-              </fieldset> */}
-              {/* </div> */}
             </div>
           </div>
         )}
       </div>
       <button
+        id="moreInfo-backButton"
         onClick={(e) => {
           e.preventDefault();
           if (weapon) {

@@ -128,41 +128,49 @@ function Profile() {
       <h1 id="welcome-header">Hey {userData?.username}, welcome back!</h1>
       <section id="main-container">
         <form id="updateForm-container" onSubmit={handleFormSubmit}>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            value={formState.email}
-            onChange={handleChange}
-            placeholder={userData.email}
-          />
-          <label htmlFor="email">Update Email</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formState.username}
-            onChange={handleChange}
-            placeholder={userData.username}
-          />
-          <label htmlFor="username">Update Username</label>
-          <input
-            type="text"
-            id="password"
-            name="password"
-            value={formState.password}
-            onChange={handleChange}
-          />
-          <label htmlFor="password">Update Password</label>
-          <input
-            type="text"
-            id="riotUsername"
-            name="riotUsername"
-            value={formState.riotUsername}
-            onChange={handleChange}
-            placeholder={userData.riotUsername}
-          />
-          <label htmlFor="riotUsername">Update Riot Username</label>
+          <div className="updateInput">
+            <label htmlFor="email">Update Email: </label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+              placeholder={userData.email}
+            />
+          </div>
+          <div className="updateInput">
+            <label htmlFor="username">Update Username: </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formState.username}
+              onChange={handleChange}
+              placeholder={userData.username}
+            />
+          </div>
+          <div className="updateInput">
+            <label htmlFor="password">Update Password: </label>
+            <input
+              type="text"
+              id="password"
+              name="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="updateInput">
+            <label htmlFor="riotUsername">Update Riot Username: </label>
+            <input
+              type="text"
+              id="riotUsername"
+              name="riotUsername"
+              value={formState.riotUsername}
+              onChange={handleChange}
+              placeholder={userData.riotUsername}
+            />
+          </div>
           <button type="submit" id="updateForm-button">
             Save changes
           </button>
@@ -183,6 +191,9 @@ function Profile() {
         </div>
       </section>
       <h2>Last agents generated</h2>
+      <b>
+        <i>Click for more info</i>
+      </b>
       <div id="agentListContainer">
         {agentBlock.length ? (
           agentBlock
