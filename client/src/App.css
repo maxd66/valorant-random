@@ -66,11 +66,12 @@
   right: 106px;
   top: 36px;
   font-size: large;
-  font-weight: 550;
+  font-weight: 700;
   background-color: white;
   border-radius: 3px;
   border-style: none;
   color: #4a4e61;
+  font-family: "Electrolize", sans-serif;
   cursor: pointer;
 }
 

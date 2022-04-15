@@ -46,6 +46,13 @@
   border: none;
 }
 
+#agentSelectForm button:disabled {
+  box-shadow: none;
+  cursor: default;
+  padding: 10px;
+  border: 2px solid rgb(126, 0, 0);
+}
+
 #extraFunctionButton-container button:hover {
   box-shadow: inset 0px 0px 10px rgb(126, 0, 0);
   cursor: pointer;

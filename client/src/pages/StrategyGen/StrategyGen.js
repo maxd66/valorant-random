@@ -18,6 +18,13 @@ function StrategyGen() {
   const [result, setResult] = useState([]);
   const [wolStats, setWolStats] = useState([]);
 
+  useEffect(() => {
+    const localSettings = localStorage.getItem("strategyState");
+    if (localSettings) {
+      setFilterState(JSON.parse(localSettings));
+    }
+  }, []);
+
   const handleHeaderClick = (event) => {
     const buttonClicked = event.target.id;
     if (buttonClicked === "agent") {
@@ -138,6 +145,7 @@ function StrategyGen() {
     });
     setFilteredApiResult(playerCountFilteredResponse);
     const randomStrategy = randomize(playerCountFilteredResponse);
+    localStorage.setItem("strategyState", JSON.stringify(filterState));
     if (Auth.loggedIn()) {
       const userData = Auth.getProfile();
       await apiCalls.updateUserHistory(

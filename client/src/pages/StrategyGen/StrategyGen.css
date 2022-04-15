@@ -9,23 +9,6 @@ html {
   --thumb-border-radius: 0px;
 }
 
-#weaponSelectForm button {
-  font-family: "Electrolize", sans-serif;
-  margin: 5px;
-  padding: 10px;
-  border: 2px solid rgb(126, 0, 0);
-  border-radius: 0px;
-  font-size: x-large;
-  font-weight: 700;
-}
-
-#weaponSelectForm button:hover {
-  box-shadow: inset 0px 0px 15px rgb(126, 0, 0);
-  padding: 12px;
-  cursor: pointer;
-  border: none;
-}
-
 #strategyPageContainer {
   padding-top: 10px;
 }
@@ -76,6 +59,14 @@ html {
 #strategyGenerate-button:hover {
   background-color: white;
   box-shadow: inset 0px 0px 20px rgb(126, 0, 0);
+}
+
+#strategyGenerate-button:disabled {
+  box-shadow: none;
+  background-color: rgba(168, 168, 168, 0.616);
+  cursor: default;
+  padding: 10px;
+  border: 2px solid rgb(126, 0, 0);
 }
 
 .hidden {
