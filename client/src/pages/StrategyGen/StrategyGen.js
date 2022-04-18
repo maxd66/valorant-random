@@ -159,12 +159,12 @@ function StrategyGen() {
     const strategyBlock = (
       <div>
         <h2>{randomStrategy.title}</h2>
-        <p>{randomStrategy.description}</p>
-        <p>
+        <p className="big-p">{randomStrategy.description}</p>
+        <p className="small-p">
           <i>Type: </i>
           {randomStrategy.class === "funny" ? "Funny" : "Tactical"}
         </p>
-        <p>
+        <p className="small-p">
           <i>Side: </i>
           {randomStrategy.side === "na"
             ? "Attack or Defend"
@@ -221,12 +221,12 @@ function StrategyGen() {
     const strategyBlock = (
       <div>
         <h2>{randomStrategy.title}</h2>
-        <p>{randomStrategy.description}</p>
-        <p>
+        <p className="big-p">{randomStrategy.description}</p>
+        <p className="small-p">
           <i>Type: </i>
           {randomStrategy.class === "funny" ? "Funny" : "Tactical"}
         </p>
-        <p>
+        <p className="small-p">
           <i>Side: </i>
           {randomStrategy.side === "na"
             ? "Attack or Defend"

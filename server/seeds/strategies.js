@@ -92,7 +92,7 @@ const strategySeeds = [
     recommendedMinimumPlayers: 2,
     title: "DON'T SAY THIS NAME OUT LOUD",
     description:
-      'Tell your teammates the strategy is to make as many callouts as possible. If any of your teammates says "Rotate" YOU can not move for 10 seconds. The timer resets if your teammates say "Rotate" while you are frozen. This includes any form of the word (i.e. "Rotating", "Rotated", etc.) You may shoot, but you can\'t aim.',
+      'Tell your teammates the strategy is to make as many callouts as possible. If any of your teammates say "Rotate" YOU can not move for 10 seconds. The timer resets if your teammates say "Rotate" while you are frozen. This includes any form of the word (i.e. "Rotating", "Rotated", etc.) You may shoot, but you can\'t aim.',
   },
   {
     side: "na",
@@ -273,9 +273,9 @@ const strategySeeds = [
     side: "na",
     class: "funny",
     recommendedMinimumPlayers: 2,
-    title: "DareDevil",
+    title: "True Jedi",
     description:
-      "The player reading this strat will choose one player (they can choose themselves) that will either have to shut their eyes or turn of their monitor for the entire round. All other participating players are responsible for guiding them, and helping them get a kills.",
+      "The player reading this strat will choose one player (they can choose themselves) that will either have to shut their eyes or turn off their monitor for the entire round. All other participating players are responsible for guiding them, and helping them get kills.",
   },
   {
     side: "na",
@@ -290,7 +290,7 @@ const strategySeeds = [
     class: "funny",
     recommendedMinimumPlayers: 1,
     title: "More Pain",
-    description: "Do the exact same strategy all participant's did last round.",
+    description: "Do the exact same strategy as you did last round.",
   },
   {
     side: "defend",
@@ -363,6 +363,44 @@ const strategySeeds = [
     title: "Greedy",
     description:
       "On both sites (not B on Haven) use as much utility needed to gain space. One player for each site cuts a gash, as deep as possible, into both main entrances to both sites, the other player stays as close as possible to protect and trade. The 5th player holds mid.",
+  },
+  {
+    side: "na",
+    class: "funny",
+    recommendedMinimumPlayers: 2,
+    title: "Serious Pipes",
+    description: "All participating players must sing all callouts.",
+  },
+  {
+    side: "na",
+    class: "funny",
+    recommendedMinimumPlayers: 1,
+    title: "Ampidexterous",
+    description:
+      "All participating players switch which hand you normally use for your mouse and keyboard. If you play with your feet, switch feet. If you use some other apparatus, just keep doing what your doing.",
+  },
+  {
+    side: "na",
+    class: "funny",
+    recommendedMinimumPlayers: 1,
+    title: "Inchworm",
+    description: "All participating players must walk for the entire round.",
+  },
+  {
+    side: "na",
+    class: "funny",
+    recommendedMinimumPlayers: 1,
+    title: "Salt the Wound",
+    description:
+      "Every slain enemy must be teabagged at least three times. If you fail this objective, the outcome of the round doesn't matter. You lose.",
+  },
+  {
+    side: "na",
+    class: "tactical",
+    recommendedMinimumPlayers: 5,
+    title: "Guarantee the Round",
+    description:
+      "This strategy is one that you carry throughout rounds until accomplished. From this point forward, all players save your ultimates until the entire team is ready. In one round, all five players use their ultimates with as much synergy as you possibly can.",
   },
 ];
 

@@ -4,11 +4,16 @@
   "description": "A randomizer for all the valorant options you can't choose from",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/maxd66/valorant-random.git"
+  },
+  "engines": {
+    "node": "14.17.2"
   },
   "keywords": [],
   "author": "",

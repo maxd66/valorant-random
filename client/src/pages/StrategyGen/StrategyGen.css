@@ -87,6 +87,14 @@ html {
   padding: 0px 10px 10px;
 }
 
+.small-p {
+  margin: 1px;
+}
+
+.big-p {
+  font-size: larger;
+}
+
 @media screen and (max-width: 600px) {
   #strategyFormContainer {
     margin: 0px;
