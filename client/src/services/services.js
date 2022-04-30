@@ -1,6 +1,6 @@
 import Auth from "./auth";
 //this is undefined because during development I am using a proxy
-const dbLink = "";
+const dbLink = "https://valorandombackend.herokuapp.com";
 const valorantApiLink = "https://valorant-api.com/v1";
 
 class ApiCalls {

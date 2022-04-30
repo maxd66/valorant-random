@@ -12,9 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/maxd66/valorant-random.git"
   },
-  "engines": {
-    "node": "14.17.2"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",

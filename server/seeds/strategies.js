@@ -84,7 +84,7 @@ const strategySeeds = [
     recommendedMinimumPlayers: 1,
     title: "Sticky Trigger Finger",
     description:
-      "When a partipating player shoots their gun, they can't stop shooting until their magazine is empty.",
+      "When a participating player shoots their gun, they can't stop shooting until their magazine is empty.",
   },
   {
     side: "na",
